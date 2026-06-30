@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>gsap.utils.clamp()</title>
+    <link rel='stylesheet' href='https://codepen.io/GreenSock/pen/gOWxmWG.css'>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        svg {
+            width: 50%;
+            max-width: 750px;
+        }
+
+        input {
+            text-align: center;
+            font-size: 2rem;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgb(255, 252, 225);
+            color: rgb(255, 252, 225);
+            width: 90px;
+            padding: .2rem;
+            outline: none;
+        }
+
+        p {
+            text-align: center;
+            line-height: 2rem;
+            font-size: 1.3rem;
+        }
+    </style>
+
+</head>
+
+<body>
+    <svg viewBox="-1 -1 102 20">
+        <rect width="100" height="10" rx="5" stroke="rgb(255, 252, 225)" />
+        <rect width="50" height="10" x="25" stroke="rgb(255, 252, 225)" />
+        <rect id="ball" width="6" height="6" rx="3" y="2" fill="#0AE448" />
+    </svg>
+
+    <input id="num" type="text" maxlength="8" value="50" />
+
+    <p>Type a number above.<br>The value will be clamped between 30 & 70.</p>
+    <script src='https://unpkg.com/gsap@3/dist/gsap.min.js'></script>
+    <script>
+        gsap.set('#ball', { xPercent: -50, x: 50 })
+
+        const num = document.querySelector("#num");
+
+        window.addEventListener("keyup", (e) => {
+            gsap.set('#ball', {
+                x: gsap.utils.clamp(30, 70, num.value)
+            })
+        })
+    </script>
+
+</body>
+
+</html>
